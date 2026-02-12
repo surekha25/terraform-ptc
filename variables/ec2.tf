@@ -11,17 +11,17 @@ resource "aws_security_group" "terraform_allow_ports" {
   name = var.sg_name
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port        = var.egress_from_port
+    to_port          = var.egress_to_port
+    protocol         = var.egress_protocol
+    cidr_blocks      = var.cidr
   }
 
   ingress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port        = var.ingress_from_port
+    to_port          = var.ingress_to_port
+    protocol         = var.ingress_protocol
+    cidr_blocks      = var.cidr
   }
 
   tags = {
