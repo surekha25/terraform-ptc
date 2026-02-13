@@ -21,7 +21,7 @@ variable "instance_type" {
 }
 
 variable "instances" {
-    default = [ "mangodb", "redis", "catalogue" ]
+    default = [ "mangodb", "redis", "mysql", "rebbitmq", "catalogue", "user", "cart", "shipping", "payment", "frontend"]
 }
 
 variable "sg_name" {

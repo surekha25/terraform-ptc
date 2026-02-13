@@ -1,5 +1,5 @@
 resource "aws_instance" "terraform" {
-  count = 3
+  count = 10
   ami           = var.ami_id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.terraform_allow_ports.id]
