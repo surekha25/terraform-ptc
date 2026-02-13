@@ -21,13 +21,7 @@ variable "instance_type" {
 }
 
 variable "instances" {
-    type = map 
-    default= {
-        mangodb = "t3.micro"
-        redis = "t3.micro"
-        mysql = "t2.medium"
-        rabbitmq = "t3.small"
-    }
+    default = [ "mangodb", "redis", "mysql", "rebbitmq", "catalogue", "user", "cart", "shipping", "payment", "frontend"]
 }
 
 variable "sg_name" {
