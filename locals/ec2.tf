@@ -3,12 +3,17 @@ resource "aws_instance" "terraform" {
   instance_type = local.instance_type
   vpc_security_group_ids = [aws_security_group.terraform_allow_ports.id]
 
-  tags = var.ec2_tags
+  tags = merge(
+    var.common_tags,
+    {
+      Name = "${local.common_name}-locals-demo"
+    }
+  )
 }
 
 resource "aws_security_group" "terraform_allow_ports" {
   # ... other configuration ...
-  name = var.sg_name
+  name = "${local.common_name}-allow-all"
 
   egress {
     from_port        = var.egress_from_port
@@ -24,7 +29,10 @@ resource "aws_security_group" "terraform_allow_ports" {
     cidr_blocks      = var.cidr
   }
 
-  tags = {
-    Name = "Terraform Allow All Ports"
-  }
+  tags = merge(
+    var.common_tags,
+    {
+      Name = "${local.common_name}-allow-all"
+    }
+  )
 }
