@@ -1,14 +1,9 @@
 resource "aws_instance" "terraform" {
-  ami           = var.ami_id
+  ami           = local.ami_id
   instance_type = local.instance_type
   vpc_security_group_ids = [aws_security_group.terraform_allow_ports.id]
 
-  tags = merge(
-    var.common_tags,
-    {
-      Name = "${local.common_name}-locals-demo"
-    }
-  )
+  tags = local.ec2_tags
 }
 
 resource "aws_security_group" "terraform_allow_ports" {
