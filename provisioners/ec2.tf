@@ -1,5 +1,5 @@
 resource "aws_instance" "terraform" {
-  ami           = "ami-00ca32bbc84273381"
+  ami           = "ami-0220d79f3f480ecf5"
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.terraform_allow_ports.id]
 
@@ -22,7 +22,7 @@ resource "aws_instance" "terraform" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = "${self.public_ip}"
+    host     = self.public_ip
   }
 
   provisioner "remote-exec" {
