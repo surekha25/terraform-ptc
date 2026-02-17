@@ -31,6 +31,14 @@ resource "aws_instance" "terraform" {
       "sudo systemctl start nginx"
     ]
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo systemctl stop nginx",
+      "echo 'successfully stopped nginx' "
+    ]
+    when = destroy
+  }
 }
 
 resource "aws_security_group" "terraform_allow_ports" {
